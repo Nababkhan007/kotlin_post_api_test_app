@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiClient {
-    @POST("productUpload")
+    @POST("productUpload/")
     @FormUrlEncoded
     fun productDetailsPost(
         @Field("is_public") is_public: Boolean,
