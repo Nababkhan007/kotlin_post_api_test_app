@@ -39,6 +39,22 @@
 
         </EditText>
 
+        <Spinner
+            android:id="@+id/spinner_productTypeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/tv_resultId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+        </TextView>
+
         <Button
             android:id="@+id/btn_postId"
             android:layout_width="match_parent"
