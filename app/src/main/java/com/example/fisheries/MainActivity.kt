@@ -8,13 +8,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var option : Spinner
-    lateinit var result : TextView
+    lateinit var option: Spinner
+    lateinit var result: TextView
+    lateinit var productType: List<ProductType>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +22,25 @@ class MainActivity : AppCompatActivity() {
         option = findViewById(R.id.spinner_productTypeId) as Spinner
         result = findViewById(R.id.tv_resultId) as TextView
 
-        var options = arrayOf("A", "B", "C")
-        option.adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, options)
+        RetrofitClient.instance.getProductType.enqueue(object : Callback<List<ProductType>> {
+            override fun onFailure(call: Call<List<ProductType>>, t: Throwable) {
+                Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
+            }
 
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onResponse(
+                call: Call<List<ProductType>>, response: Response<List<ProductType>>) {
+                productType = response.body()!!
+                productType.get(index = 1).product
+                Toast.makeText(baseContext, ""+productType.get(index = 0).product, Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+        var options = arrayOf("A", "B", "C")
+        option.adapter =
+            ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, options)
+
+        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 result.text = "Please select an option"
             }

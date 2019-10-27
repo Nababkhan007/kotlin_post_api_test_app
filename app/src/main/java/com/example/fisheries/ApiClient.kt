@@ -15,4 +15,7 @@ interface ApiClient {
         @Field("slug") slug: String,
         @Field("product_class") product_class: Int
     ): Call<DefaultResponse>
+
+    @get:GET("productCategory/")
+    val getProductType: Call<List<ProductType>>
 }
