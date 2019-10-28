@@ -1,5 +1,6 @@
 package com.example.fisheries
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -71,6 +72,10 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 })
+        }
+
+        btn_openNewActivityId.setOnClickListener{
+            startActivity(Intent(this, RecyclerViewActivity::class.java))
         }
     }
 }
